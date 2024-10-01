@@ -1,0 +1,258 @@
+{
+	"info": {
+		"_postman_id": "c13a02ac-f993-4c85-9316-cce909b2d965",
+		"name": "ClickUp API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24610177"
+	},
+	"item": [
+		{
+			"name": "Get_Token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"\r",
+							"// Извлекаем токен из тела ответа (например, под ключом \"token\" или \"access_token\")\r",
+							"var token = jsonData.token || jsonData.access_token; \r",
+							"\r",
+							"// Проверяем, что токен был успешно получен\r",
+							"if (token) {\r",
+							"    // Сохраняем токен в переменную окружения\r",
+							"    pm.environment.set(\"auth_token\", token);\r",
+							"    \r",
+							"    // Логируем токен для проверки\r",
+							"    console.log(\"Token saved:\", token);\r",
+							"} else {\r",
+							"    console.log(\"Token not found in response.\");\r",
+							"}\r",
+							"    "
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://a00fb6e0-339c-4201-972f-503b9932d17a.remockly.com/v2/oauth/token?client_id=string&client_secret=string&code=string",
+					"protocol": "https",
+					"host": [
+						"a00fb6e0-339c-4201-972f-503b9932d17a",
+						"remockly",
+						"com"
+					],
+					"path": [
+						"v2",
+						"oauth",
+						"token"
+					],
+					"query": [
+						{
+							"key": "client_id",
+							"value": "string"
+						},
+						{
+							"key": "client_secret",
+							"value": "string"
+						},
+						{
+							"key": "code",
+							"value": "string"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get goals",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://a00fb6e0-339c-4201-972f-503b9932d17a.remockly.com/v2/team/11/goal",
+					"protocol": "https",
+					"host": [
+						"a00fb6e0-339c-4201-972f-503b9932d17a",
+						"remockly",
+						"com"
+					],
+					"path": [
+						"v2",
+						"team",
+						"11",
+						"goal"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get goal",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://a00fb6e0-339c-4201-972f-503b9932d17a.remockly.com/v2/goal/{11}",
+					"protocol": "https",
+					"host": [
+						"a00fb6e0-339c-4201-972f-503b9932d17a",
+						"remockly",
+						"com"
+					],
+					"path": [
+						"v2",
+						"goal",
+						"{11}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create goal",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Goal 1\",\r\n    \"due_date\": 1568036964079,\r\n    \"description\": \"Goal Description\",\r\n    \"multiple_owners\": true,\r\n    \"owners\": [\r\n      183\r\n    ],\r\n    \"color\": \"#32a852\"\r\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://a00fb6e0-339c-4201-972f-503b9932d17a.remockly.com/v2/team/12/goal",
+					"protocol": "https",
+					"host": [
+						"a00fb6e0-339c-4201-972f-503b9932d17a",
+						"remockly",
+						"com"
+					],
+					"path": [
+						"v2",
+						"team",
+						"12",
+						"goal"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update goal",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Updated Goal Name\",\r\n    \"due_date\": 1568036964079,\r\n    \"description\": \"Updated Goal Description\",\r\n    \"rem_owners\": [\r\n      183\r\n    ],\r\n    \"add_owners\": [\r\n      184\r\n    ],\r\n    \"color\": \"#32a852\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://a00fb6e0-339c-4201-972f-503b9932d17a.remockly.com/v2/goal/12",
+					"protocol": "https",
+					"host": [
+						"a00fb6e0-339c-4201-972f-503b9932d17a",
+						"remockly",
+						"com"
+					],
+					"path": [
+						"v2",
+						"goal",
+						"12"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete goal",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://a00fb6e0-339c-4201-972f-503b9932d17a.remockly.com/v2/goal/12",
+					"protocol": "https",
+					"host": [
+						"a00fb6e0-339c-4201-972f-503b9932d17a",
+						"remockly",
+						"com"
+					],
+					"path": [
+						"v2",
+						"goal",
+						"12"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "apikey",
+		"apikey": [
+			{
+				"key": "key",
+				"value": "Authorization",
+				"type": "string"
+			},
+			{
+				"key": "value",
+				"value": "{{auth_token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
